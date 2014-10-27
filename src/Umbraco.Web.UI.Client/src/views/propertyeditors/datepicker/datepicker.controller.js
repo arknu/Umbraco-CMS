@@ -28,12 +28,12 @@ function dateTimePickerController($scope, notificationsService, assetsService, a
     function applyDate(e) {
         angularHelper.safeApply($scope, function() {
             // when a date is changed, update the model
-            if (e.localDate) {
+            if (e.date) {
                 if ($scope.model.config.format == "YYYY-MM-DD HH:mm:ss") {
-                    $scope.model.value = e.localDate.toIsoDateTimeString();
+                    $scope.model.value = e.date.toDate().toIsoDateTimeString();
                 }
                 else {
-                    $scope.model.value = e.localDate.toIsoDateString();
+                    $scope.model.value = e.date.toDate().toIsoDateString();
                 }
             }
             
@@ -65,7 +65,7 @@ function dateTimePickerController($scope, notificationsService, assetsService, a
 				// Open the datepicker and add a changeDate eventlistener
 				$element.find("div:first")
 					.datetimepicker($scope.model.config)
-					.on("changeDate", applyDate);
+					.on("dp.change", applyDate);
 
 				//manually assign the date to the plugin
 				$element.find("div:first").datetimepicker("setValue", $scope.model.value ? $scope.model.value : null);

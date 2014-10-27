@@ -370,6 +370,14 @@ THE SOFTWARE.
             if (eventType !== 'change') {
                 picker.element.change();
             }
+
+            ////////MODIFICATION FOR COMPATIBILITY WITH OLD DATEPICKER
+            picker.element.trigger({
+                type: 'changeDate',
+                date: moment(picker.date).toDate(),
+                localDate: moment(picker.date).toDate()
+            });
+            ///////END MODIFICATION FOR COMPATIBILTIY
         },
 
         notifyError = function (date) {
@@ -1216,6 +1224,13 @@ THE SOFTWARE.
                 type: 'dp.show',
                 date: moment(picker.date)
             });
+            ////////MODIFICATION FOR COMPATIBILITY WITH OLD DATEPICKER
+            picker.element.trigger({
+                type: 'show',
+                date: moment(picker.date).toDate(),
+                localDate: moment(picker.date).toDate()
+            });
+            ///////END MODIFICATION FOR COMPATIBILTIY
             attachDatePickerGlobalEvents();
             if (e) {
                 stopEvent(e);
@@ -1257,6 +1272,13 @@ THE SOFTWARE.
                 type: 'dp.hide',
                 date: moment(picker.date)
             });
+            ////////MODIFICATION FOR COMPATIBILITY WITH OLD DATEPICKER
+            picker.element.trigger({
+                type: 'hide',
+                date: moment(picker.date).toDate(),
+                localDate: moment(picker.date).toDate()
+            });
+            ///////END MODIFICATION FOR COMPATIBILTIY
             detachDatePickerGlobalEvents();
         };
 
