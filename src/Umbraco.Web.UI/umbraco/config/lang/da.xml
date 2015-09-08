@@ -71,6 +71,7 @@
     <key alias="macroInsert">Indsæt makro</key>
     <key alias="pictureInsert">Indsæt billede</key>
     <key alias="relations">Redigér relationer</key>
+    <key alias="returnToList">Tilbage til liste</key>
     <key alias="save">Gem</key>
     <key alias="saveAndPublish">Gem og udgiv</key>
     <key alias="saveToPublish">Gem og send til udgivelse</key>
