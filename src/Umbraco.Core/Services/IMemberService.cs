@@ -10,6 +10,42 @@ using Umbraco.Core.Persistence.Querying;
 namespace Umbraco.Core.Services
 {
     /// <summary>
+    /// A temporary interface until we are in v8, this is used to return a different result for the same method and this interface gets implemented
+    /// explicitly. These methods will replace the normal ones in IContentService in v8 and this will be removed.
+    /// </summary>
+    public interface IMemberServiceOperations
+    {
+        //TODO: Remove this class in v8
+
+        /// <summary>
+        /// Saves a single <see cref="IContent"/> object
+        /// </summary>
+        /// <param name="content">The <see cref="IContent"/> to save</param>
+        /// <param name="userId">Optional Id of the User saving the Content</param>
+        /// <param name="raiseEvents">Optional boolean indicating whether or not to raise events.</param>
+        Attempt<OperationStatus> Save(IMember content, bool raiseEvents = true);
+
+        /// <summary>
+        /// Saves a collection of <see cref="IContent"/> objects.
+        /// </summary>        
+        /// <param name="contents">Collection of <see cref="IContent"/> to save</param>
+        /// <param name="userId">Optional Id of the User saving the Content</param>
+        /// <param name="raiseEvents">Optional boolean indicating whether or not to raise events.</param>        
+        Attempt<OperationStatus> Save(IEnumerable<IMember> contents, bool raiseEvents = true);
+
+        /// <summary>
+        /// Permanently deletes an <see cref="IContent"/> object.
+        /// </summary>
+        /// <remarks>
+        /// This method will also delete associated media files, child content and possibly associated domains.
+        /// </remarks>
+        /// <remarks>Please note that this method will completely remove the Content from the database</remarks>
+        /// <param name="content">The <see cref="IContent"/> to delete</param>
+        /// <param name="userId">Optional Id of the User deleting the Content</param>
+        Attempt<OperationStatus> Delete(IMember content);
+    }
+
+    /// <summary>
     /// Defines the MemberService, which is an easy access to operations involving (umbraco) members.
     /// </summary>
     public interface IMemberService : IMembershipMemberService
